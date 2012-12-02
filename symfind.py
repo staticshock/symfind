@@ -4,7 +4,7 @@ from __future__ import print_function
 import re
 from subprocess import check_output
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 def parse_output(args, pattern):
@@ -35,7 +35,7 @@ class memoize(dict):
 def get_def_syms(obj):
     # This is better than nm -D for matching versioned symbols,
     # e.g. something@@GLIBC_2.0
-    return parse_output(["readelf", "--dyn-syms", obj], r" (\S+)\n")
+    return parse_output(["readelf", "--dyn-syms", "--wide", obj], r" (\S+)\n")
 
 
 FOUND_MSG = "{idt}Found symbol: \033[36m{sym}\033[0m in \033[34m{lib}\033[0m"
@@ -61,7 +61,7 @@ def symfind(targets):
 def parse_args():
     from optparse import OptionParser
     parser = OptionParser(
-        usage="%prog [options] lib1 [lib2 ...]",
+        usage="%prog [options] <file1> [file2 [...]]",
         version="%prog v" + __version__)
     return parser.parse_args()
 
