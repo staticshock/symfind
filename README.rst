@@ -13,7 +13,6 @@ It's not in the package index, but the cleanest install is still through pip::
   git clone git://github.com/staticshock/symfind.git
   cd symfind
   python setup.py sdist
-  pip install basketweaver
   makeindex dist/*  # pip install basketweaver if you don't have this
   pip install -i file://$(realpath ./index) symfind
 
