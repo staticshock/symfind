@@ -1,11 +1,10 @@
 SHELL := /bin/bash
 
-index:
+all:
 	python setup.py sdist
-	makeindex dist/*
+
+install:
+	pip install --upgrade dist/symfind-*.tar.gz
 
 clean:
 	rm -rf ./dist ./index MANIFEST symfind.pyc
-
-install:
-	pip install -i file://$(realpath ./index) --upgrade symfind
